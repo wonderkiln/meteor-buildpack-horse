@@ -30,7 +30,10 @@ APP_CHECKOUT_DIR=$1
 # The Iron scaffolding tool (https://github.com/iron-meteor/iron-cli) place the
 # Meteor app in /app/ instead of in the root. So let's try the /app/ folder if
 # there is no Meteor app in the root.
-#[ ! -d "$APP_CHECKOUT_DIR/.meteor" ] && APP_CHECKOUT_DIR="$APP_CHECKOUT_DIR/app"
+APP_SOURCE_DIR="$APP_CHECKOUT_DIR"
+if [ ! -d "$APP_SOURCE_DIR/.meteor" ] && [ -d "$APP_SOURCE_DIR/app/.meteor" ]; then
+  APP_SOURCE_DIR="$APP_SOURCE_DIR/app/"
+fi
 # Where we will install meteor. Has to be outside the APP_CHECKOUT_DIR.
 METEOR_DIR=`mktemp -d "$BUILDPACK_DIR"/meteor-XXXX`
 # Where we'll put things we compile.
@@ -66,7 +69,7 @@ METEOR="$METEOR_DIR/.meteor/meteor" # The meteor binary.
 # Build the meteor app!
 #
 echo "-----> Bundling bundle"
-cd "$APP_CHECKOUT_DIR"/app
+cd "$APP_SOURCE_DIR"
 
 # Now on to bundling. Don't put the bundle in $APP_CHECKOUT_DIR, or it will
 # recurse, trying to bundle up its own bundling.
