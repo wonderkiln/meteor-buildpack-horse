@@ -66,7 +66,7 @@ METEOR="$METEOR_DIR/.meteor/meteor" # The meteor binary.
 # Build the meteor app!
 #
 echo "-----> Bundling bundle"
-cd $APP_CHECKOUT_DIR
+cd "$APP_CHECKOUT_DIR"/app
 
 # Now on to bundling. Don't put the bundle in $APP_CHECKOUT_DIR, or it will
 # recurse, trying to bundle up its own bundling.
