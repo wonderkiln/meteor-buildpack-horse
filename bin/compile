@@ -30,7 +30,7 @@ APP_CHECKOUT_DIR=$1
 # The Iron scaffolding tool (https://github.com/iron-meteor/iron-cli) place the
 # Meteor app in /app/ instead of in the root. So let's try the /app/ folder if
 # there is no Meteor app in the root.
-[ ! -d "$APP_CHECKOUT_DIR/.meteor" ] && APP_CHECKOUT_DIR="$APP_CHECKOUT_DIR/app"
+#[ ! -d "$APP_CHECKOUT_DIR/.meteor" ] && APP_CHECKOUT_DIR="$APP_CHECKOUT_DIR/app"
 # Where we will install meteor. Has to be outside the APP_CHECKOUT_DIR.
 METEOR_DIR=`mktemp -d "$BUILDPACK_DIR"/meteor-XXXX`
 # Where we'll put things we compile.
@@ -83,7 +83,7 @@ HOME=$METEOR_DIR $METEOR remove-platform ios android
 # Also remember to use 'heroku stack:set cedar-14' to allow certain recompiled
 # packages to use the newer version memcpy that ships with a more recent version
 # of glibc (contained in cedar-14)
-if [ -n "${BUILDPACK_PRELAUNCH_METEOR+1}" ]; then 
+if [ -n "${BUILDPACK_PRELAUNCH_METEOR+1}" ]; then
 echo "-----> Pre-launching Meteor to create packages assets and prevent bundling from failing"
     HOME=$METEOR_DIR timeout -s9 60 $METEOR --settings settings.json || true
 fi
