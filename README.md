@@ -1,19 +1,16 @@
 # Meteor Buildpack Horse
 
-A heroku buildpack for Meteor v0.9.3+ (including 1.0 and up), using meteor's
-native packaging system and designed to be as simple and readable as possible.
-
-*NOTE: previous versious of this buildpack used Compose (aka MongoHQ) which no longer offers a free tier to heroku users. If you still need MongoHQ, use the [MongoHQ branch](https://github.com/AdmitHub/meteor-buildpack-horse/tree/mongohq).*
+A heroku buildpack for Meteor v1.2.x and up, using meteor's native packaging system and designed to be as simple and readable as possible.
 
 To use this with your meteor app and heroku:
 
 1. Set up your app to [deploy to heroku with git](https://devcenter.heroku.com/articles/git).
 2. Set this repository as the buildpack URL:
 
-        heroku buildpacks:set https://github.com/AdmitHub/meteor-buildpack-horse.git
+        heroku buildpacks:set https://github.com/wonderkiln/meteor-buildpack-iron-cli.git
 
 3. Add the MongoLab addon:
-        
+
         heroku addons:create mongolab
 
 4. If it isn't set already, be sure to set the ``ROOT_URL`` for meteor (replace URL with whatever is appropriate):
@@ -28,7 +25,7 @@ Once that's done, you can deploy your app using this build pack any time by push
 
 The basic buildpack should function correctly for any normal-ish meteor app,
 with or without npm-container.  For extra steps needed for your particular build,
-just add shell scripts to the "extras" folder and they will get sourced into the 
+just add shell scripts to the "extras" folder and they will get sourced into the
 build.
 
 Extras included in this branch:
@@ -46,20 +43,5 @@ subdirectories.  Those directories are added to ``$PATH`` and
 So ``$COMPILE_DIR/bin`` etc are great places to put any extra binaries or stuff
 if you need to in custom extras.
 
-## Workarounds 
-
-Meteor is under active developement, recent changes in its core broke support for 
-certain meteor packages designed to access their own assets at first run. The issue
-has been reported on https://github.com/meteor/meteor/issues/2606, but it may take 
-a while to have it fixed. In the meanwhile you can circumvent the problem by setting 
-the following variable in your Heroku Config Vars:
-   
-    BUILDPACK_PRELAUNCH_METEOR
-
-## Why horse?
-
-There are a gazillian forks and branches of various buildpacks remixing the
-words "heroku", "buildpack", and "meteor", many of which are abandoned or
-outdated or broken, and it's really hard to keep them straight.
-
-So this one is the horse one.
+## Maintained by WonderKiln
+This is a fork of a fork and this may reduce visibility. As such in the future we may drop the forked association depending on the community usage/etc. However, this is maintained by WonderKiln and will be for the forseeable future.
