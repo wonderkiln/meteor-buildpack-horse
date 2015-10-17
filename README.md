@@ -1,6 +1,6 @@
-# Meteor Buildpack Horse
+# Meteor Buildpack Iron CLI
 
-A heroku buildpack for Meteor v1.2.x and up, using meteor's native packaging system and designed to be as simple and readable as possible.
+A heroku buildpack for Meteor v1.2.x and up built using Iron CLI scaffolding, using meteor's native packaging system and designed to be as simple and readable as possible.
 
 To use this with your meteor app and heroku:
 
